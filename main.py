@@ -13,16 +13,16 @@ async def root():
 
 @app.get("/sumar/")
 async def sumar(num1: int, num2: int):
-    return {calc.sumar(num1, num2)}
+    return {"resultado": calc.sumar(num1, num2)}
 
 @app.get("/restar/")
 async def restar(num1: int, num2: int):
-    return {calc.sumar(num1, num2)}
+    return {"resultado": calc.restar(num1, num2)}
 
 @app.get("/multiplicar/")
 async def multiplicar(num1: int, num2: int):
-    return {calc.sumar(num1, num2)}
+    return {"resultado": calc.multiplicar(num1, num2)}
 
 @app.get("/dividir/")
 async def dividir(num1: int, num2: int):
-    return {calc.sumar(num1, num2)}
+    return {"resultado": calc.dividir(num1, num2)}
