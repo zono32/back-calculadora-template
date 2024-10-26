@@ -1,5 +1,3 @@
-from urllib.request import Request
-
 from fastapi import FastAPI
 from calculadora import Calculadora
 
