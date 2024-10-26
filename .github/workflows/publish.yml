@@ -9,6 +9,36 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
+  #JOB1: TESTS
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.11" ]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with Ruff
+        run: |
+          pip install ruff  
+          ruff --format=github --target-version=py310 .
+        continue-on-error: true
+      - name: Test with pytest
+        run: |
+          coverage run -m pytest  -v -s
+      - name: Generate Coverage Report
+        run: |
+          coverage report -m
+
+#JOB2: Build and push image
   build-and-push-image:
     runs-on: ubuntu-latest
 
@@ -30,8 +60,8 @@ jobs:
 
       - name: Build Docker image
         run:
-          docker build . --tag ghcr.io/ies-teis/libro-guardias-backend:latest
+          docker build . --tag ghcr.io/rcalsergio/backend-calculator:latest
 
       - name: Push Docker image
         run:
-          docker push ghcr.io/ies-teis/libro-guardias-backend:latest
+          docker push ghcr.io/rcalsergio/backend-calculator:latest
