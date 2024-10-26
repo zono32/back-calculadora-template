@@ -31,8 +31,10 @@ jobs:
       - name: Test with pytest
         run: |
           pip install httpx
-          pytest
-
+          coverage run -m pytest  -v -s
+      - name: Generate Coverage Report
+        run: |
+          coverage report -m --omit="/usr/*"
 
 #JOB2: Build and push image
   build-and-push-image:
