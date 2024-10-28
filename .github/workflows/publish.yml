@@ -65,7 +65,7 @@ jobs:
           docker push ghcr.io/rcalsergio/backend-calculator:latest
 
    #JOB3: Build and push image to DockerHub
-  build and push to DockerHub:
+  build-and-push-to-dockerhub:
     runs-on: ubuntu-latest
     steps:
 
