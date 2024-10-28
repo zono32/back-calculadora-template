@@ -1,11 +1,20 @@
 from urllib.request import Request
 
-
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from calculadora import Calculadora
 
 app = FastAPI()
 calc = Calculadora()
+
+# Configurar CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite todos los orígenes (puedes restringir esto)
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos los métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permite todos los encabezados
+)
 
 @app.get("/")
 async def root():
