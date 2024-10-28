@@ -6,7 +6,7 @@ def calc():
     return Calculadora()
 
 def test_sumar(calc):
-    assert calc.sumar(5, 3) == 9
+    assert calc.sumar(5, 3) == 8
     assert calc.sumar(-1, -1) == -2
     assert calc.sumar(0, 0) == 0
 
