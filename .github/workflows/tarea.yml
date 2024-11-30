@@ -1,0 +1,14 @@
+name: tarea repaso
+on: push
+jobs:
+    test_and_lint:
+      runs-on: ubuntu-latest
+      steps:
+        - name: copiar código  
+          uses: actions/chechout@v4
+        - name: ejecutar requerimientos
+          run: pip install -r requirements.txt
+        - name: ejecutar test
+          run: pytest
+        - name: ejecutar lint
+          run: ruff check .  
